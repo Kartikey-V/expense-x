@@ -24,6 +24,8 @@ const Card = ({ transaction }) => {
 
 	description = description[0]?.toUpperCase() + description?.slice(1);
 	category = category[0]?.toUpperCase() + category?.slice(1);
+	paymentType = paymentType[0]?.toUpperCase() + paymentType?.slice(1);
+
 	const formattedDate = formatDate(date);
 
 	const [deleteTransaction, { loading, error }] = useMutation(
@@ -61,7 +63,7 @@ const Card = ({ transaction }) => {
 						{loading && (
 							<div className="w-6 h-6 border-t-2 border-b-2 rounded-full animate-spin"></div>
 						)}
-						<Link to={`/transaction/123`}>
+						<Link to={`/transaction/${transaction._id}`}>
 							<HiPencilAlt className="cursor-pointer" size={20} />
 						</Link>
 					</div>
