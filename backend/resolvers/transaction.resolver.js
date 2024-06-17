@@ -26,6 +26,16 @@ const transactionResolver = {
 	},
 	Mutation: {
 		createTransaction: async (_, { input }, context) => {
+			if (
+				!description ||
+				!paymentType ||
+				!category ||
+				!amount ||
+				!date ||
+				!location
+			) {
+				throw new Error('All fields are required');
+			}
 			try {
 				const newTransaction = new Transaction({
 					...input,
