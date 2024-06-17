@@ -26,6 +26,8 @@ const transactionResolver = {
 	},
 	Mutation: {
 		createTransaction: async (_, { input }, context) => {
+			const { description, paymentType, category, amount, date, location } =
+				input;
 			if (
 				!description ||
 				!paymentType ||
