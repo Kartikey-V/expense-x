@@ -11,7 +11,6 @@ const TransactionPage = () => {
 	const { loading, data } = useQuery(GET_TRANSACTION, {
 		variables: { id: id },
 	});
-	console.log(data);
 	const [formData, setFormData] = useState({
 		description: data?.transaction?.description || '',
 		paymentType: data?.transaction?.paymentType || '',
@@ -62,7 +61,9 @@ const TransactionPage = () => {
 
 	const [updateTransaction, { loading: loadingUpdate, error }] = useMutation(
 		UPDATE_TRANSACTION,
-		{}
+		{
+			refetchQueries: ['GetTransactions', 'GetTransactionStatistics'],
+		}
 	);
 	if (loading) return <TransactionFormSkeleton />;
 

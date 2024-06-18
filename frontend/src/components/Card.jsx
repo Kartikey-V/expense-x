@@ -39,6 +39,7 @@ const Card = ({ transaction }) => {
 		try {
 			await deleteTransaction({
 				variables: { transactionId: transaction._id },
+				refetchQueries: ['GetTransactions', 'GetTransactionStatistics'],
 			});
 			toast.success('Transaction deleted successfully');
 		} catch (error) {
