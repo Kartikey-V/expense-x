@@ -56,6 +56,7 @@ const userResolver = {
 				throw new Error(err.message || 'Internal server error');
 			}
 		},
+
 		logout: async (_, __, context) => {
 			try {
 				await context.logout();
@@ -88,6 +89,17 @@ const userResolver = {
 			} catch (err) {
 				console.error('Error in user query:', err);
 				throw new Error(err.message || 'Error getting user');
+			}
+		},
+	},
+	User: {
+		transactions: async (parent) => {
+			try {
+				const transactions = await Transaction.find({ userId: parent._id });
+				return transactions;
+			} catch (error) {
+				console.error('error in user.transaction resolver: ', error);
+				throw new Error(error.message || 'Internal Server Error');
 			}
 		},
 	},

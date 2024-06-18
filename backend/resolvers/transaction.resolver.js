@@ -1,4 +1,5 @@
 import Transaction from '../models/transaction.model.js';
+import User from '../models/user.model.js';
 
 const transactionResolver = {
 	Query: {
@@ -23,7 +24,6 @@ const transactionResolver = {
 				throw new Error('Error getting transaction');
 			}
 		},
-
 		categoryStatistics: async (_, __, context) => {
 			if (!context.getUser()) throw new Error('Unauthorized');
 
@@ -92,6 +92,18 @@ const transactionResolver = {
 			} catch (err) {
 				console.error('Error deleting Transaction', err);
 				throw new Error('Error deleting transaction');
+			}
+		},
+	},
+	Transaction: {
+		user: async (parent) => {
+			const userId = parent.userId;
+			try {
+				const user = await User.findById(userId);
+				return user;
+			} catch (error) {
+				console.error('Error getting user: ', err);
+				throw new Error('Error getting user');
 			}
 		},
 	},
