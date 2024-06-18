@@ -13,7 +13,6 @@ import { GET_AUTHENTICATED_USER } from './graphql/queries/user.query';
 
 function App() {
 	const { loading, data } = useQuery(GET_AUTHENTICATED_USER);
-	console.log('Authenticated user:', data);
 	if (loading) return null;
 	return (
 		<>

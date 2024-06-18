@@ -22,8 +22,6 @@ const Card = ({ transaction, authUser }) => {
 		transaction;
 	const cardClass = categoryColorMap[category];
 
-	console.log(authUser?.authUser?.profilePicture);
-
 	description = description[0]?.toUpperCase() + description?.slice(1);
 	category = category[0]?.toUpperCase() + category?.slice(1);
 	paymentType = paymentType[0]?.toUpperCase() + paymentType?.slice(1);
